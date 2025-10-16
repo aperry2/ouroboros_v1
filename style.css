@@ -51,7 +51,6 @@ html, body {
   z-index: 1;
 }
 
-
 .post img,
 .post video {
   width: 100%;
@@ -59,7 +58,6 @@ html, body {
   object-fit: cover;
   display: block;
 }
-
 
 /* Overlay */
 .overlay {
@@ -73,7 +71,6 @@ html, body {
   backdrop-filter: blur(8px);
   z-index: 3; /* above media */
 }
-
 
 .overlay h2 {
   font-size: 1.4rem;

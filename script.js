@@ -32,32 +32,40 @@ function renderPosts(posts) {
   if (firstPost) firstPost.classList.add('active');
 }
 
-function showPost(index) {
+function showPost(newIndex) {
   const allPosts = document.querySelectorAll('.post');
-  allPosts.forEach((post, i) => {
-    post.classList.remove('active', 'exit-up', 'exit-down');
-    if (i < index) post.classList.add('exit-up');
-    if (i > index) post.classList.add('exit-down');
-  });
-  allPosts[index].classList.add('active');
+  const oldIndex = currentIndex;
+
+  // Do nothing if same index
+  if (newIndex === oldIndex) return;
+
+  // Determine direction: forward or backward
+  const forward = (newIndex > oldIndex) || (oldIndex === posts.length - 1 && newIndex === 0);
+
+  // Apply exit class to old post
+  allPosts[oldIndex].classList.remove('active'); // remove only active
+  allPosts[oldIndex].classList.add(forward ? 'exit-up' : 'exit-down');
+
+  // Activate new post
+  allPosts[newIndex].classList.remove('exit-up', 'exit-down');
+  allPosts[newIndex].classList.add('active');
+
+  // Update currentIndex
+  currentIndex = newIndex;
 }
 
+
 function nextPost() {
-  currentIndex = (currentIndex + 1) % posts.length;
-  showPost(currentIndex);
+  const newIndex = (currentIndex + 1) % posts.length;
+  showPost(newIndex);
 }
 
 function prevPost() {
-  currentIndex = (currentIndex - 1 + posts.length) % posts.length;
-  showPost(currentIndex);
+  const newIndex = (currentIndex - 1 + posts.length) % posts.length;
+  showPost(newIndex);
 }
 
 function initNavigation() {
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextPost();
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevPost();
-  });
-
   let startY = 0;
   document.addEventListener('touchstart', (e) => startY = e.touches[0].clientY);
   document.addEventListener('touchend', (e) => {
@@ -66,18 +74,27 @@ function initNavigation() {
     if (endY - startY > 50) prevPost();
   });
 
-  let lastWheelTime = 0;
+  // Keyboard
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') nextPost();
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') prevPost();
+  });
 
-  document.addEventListener('wheel', (e) => {
+  // Wheel
+  let lastWheelTime = 0;
+  const WHEEL_THRESHOLD = 50;
+
+  window.addEventListener('wheel', (e) => {
     e.preventDefault();
     const now = Date.now();
+    if (now - lastWheelTime < 600) return;
+    if (Math.abs(e.deltaY) < WHEEL_THRESHOLD) return;
 
-    if (now - lastWheelTime < 1200) return; // only allow one slide every 600ms
     lastWheelTime = now;
-
     if (e.deltaY > 0) nextPost();
     if (e.deltaY < 0) prevPost();
   }, { passive: false });
+
 }
 
 document.getElementById('enter').addEventListener('click', () => {
