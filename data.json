@@ -1,0 +1,20 @@
+[
+  {
+    "artist": "Alan Perry",
+    "title": "Test 1",
+    "description": "A test.",
+    "src": "alan1.png"
+  },
+  {
+    "artist": "Alan Perry",
+    "title": "Test 2",
+    "description": "A test.",
+    "src": "alan2.png"
+  },
+  {
+    "artist": "Alan Perry",
+    "title": "Test 3",
+    "description": "A test. this one has a really long description to test edge cases in length. wow this is like a lot of text huh? how else can we pad this? maybe we can add 'no thanks, i'd rather not stay on the screen' to see if that stays on the screen.",
+    "src": "alan3.png"
+  }
+]
