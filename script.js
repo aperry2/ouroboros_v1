@@ -36,24 +36,40 @@ function showPost(newIndex) {
   const allPosts = document.querySelectorAll('.post');
   const oldIndex = currentIndex;
 
-  // Do nothing if same index
   if (newIndex === oldIndex) return;
 
-  // Determine direction: forward or backward
-  const forward = (newIndex > oldIndex) || (oldIndex === posts.length - 1 && newIndex === 0);
+  // Determine forward/backward
+  let forward;
+  if (oldIndex === posts.length - 1 && newIndex === 0) forward = true;
+  else if (oldIndex === 0 && newIndex === posts.length - 1) forward = false;
+  else forward = newIndex > oldIndex;
 
-  // Apply exit class to old post
-  allPosts[oldIndex].classList.remove('active'); // remove only active
-  allPosts[oldIndex].classList.add(forward ? 'exit-up' : 'exit-down');
+  const oldPostEl = allPosts[oldIndex];
+  const newPostEl = allPosts[newIndex];
 
-  // Activate new post
-  allPosts[newIndex].classList.remove('exit-up', 'exit-down');
-  allPosts[newIndex].classList.add('active');
+  // Animate old post out
+  oldPostEl.classList.remove('active');
+  oldPostEl.classList.add(forward ? 'exit-up' : 'exit-down');
+
+  // Prepare new post offscreen
+  newPostEl.classList.remove('exit-up','exit-down','active','forward-start','backward-start');
+  newPostEl.classList.add(forward ? 'forward-start' : 'backward-start');
+
+  // Force reflow
+  void newPostEl.offsetHeight;
+
+  // Animate new post in
+  newPostEl.classList.add('active');
+  newPostEl.classList.remove(forward ? 'forward-start' : 'backward-start');
 
   // Update currentIndex
   currentIndex = newIndex;
-}
 
+  // Optional: remove exit-* class from old post after transition
+  oldPostEl.addEventListener('transitionend', () => {
+    oldPostEl.classList.remove('exit-up','exit-down');
+  }, { once: true });
+}
 
 function nextPost() {
   const newIndex = (currentIndex + 1) % posts.length;
