@@ -122,8 +122,11 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 10; /* above feed */
+  text-align: center;
+  z-index: 10;
   transition: opacity 0.6s ease;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
 }
 
 #splash.fade {
@@ -133,12 +136,71 @@ html, body {
 
 
 #splash h1 {
-  font-size: 2rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
+  font-size: 2.4rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
 }
 
-#splash p {
+#splash h2 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 0;
+  margin-bottom: 1.4rem;
+}
+
+
+.curator-info {
+  font-size: 0.9rem;
+  line-height: 1.4;
   opacity: 0.7;
   margin-bottom: 2rem;
+}
+
+.curator-info p {
+  margin: 0.2rem 0;
+}
+
+.biennale {
+  opacity: 0.8;
+}
+
+
+.statement {
+  max-width: 700px;
+  margin: 0 auto 2.4rem auto;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.statement p {
+  margin: 0.5rem 0;
+}
+
+
+#enter {
+  padding: 10px 28px;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#enter:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: #fff;
+  transform: scale(1.05);
+}
+
+
+.loading {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
