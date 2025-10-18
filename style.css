@@ -145,8 +145,8 @@ html, body {
 #splash p {
   opacity: 0.7;
   margin-bottom: 2rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .button {
