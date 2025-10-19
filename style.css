@@ -240,6 +240,7 @@ html, body {
   position: fixed;
   inset: 0;
   background: #000;
+  -webkit-overflow-scrolling: touch; /* <— enables smooth scrolling on iOS */
   color: #fff;
   z-index: 20;
   overflow-y: auto; 
