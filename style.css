@@ -27,7 +27,8 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: #000;
   font-family: 'Inter', sans-serif;
   color: #fff;
