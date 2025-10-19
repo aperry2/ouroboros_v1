@@ -119,7 +119,26 @@ function initNavigation() {
 
 }
 
+// Pierce the Veil 
 document.getElementById('enter').addEventListener('click', () => {
   document.getElementById('splash').classList.add('fade');
+  document.getElementById('opencall-page').classList.add('hidden');
+  document.getElementById('feed').style.display = 'block'; 
   initApp();
+});
+
+// Open Call 
+document.getElementById('opencall').addEventListener('click', () => {
+  document.getElementById('splash').classList.add('fade');
+  document.getElementById('opencall-page').classList.remove('hidden');
+  document.getElementById('feed').style.display = 'none'; 
+  document.getElementById('opencall-page').scrollTop = 0;
+});
+
+// Return 
+document.getElementById('back-from-opencall').addEventListener('click', () => {
+  document.getElementById('splash').classList.remove('fade');
+  document.getElementById('opencall-page').classList.add('hidden');
+  document.getElementById('feed').style.display = 'none'; 
+  document.getElementById('opencall-page').scrollTop = 0;
 });

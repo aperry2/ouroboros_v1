@@ -39,7 +39,8 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #000; /* fallback in case media doesn't cover */
+  background: #000;
+  display: none; 
 }
 
 .post {
@@ -48,16 +49,6 @@ html, body {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  transform: translateY(0);
-  transition: transform 0.6s ease, opacity 0.6s ease;
-  z-index: 0;
-}
-
-.post {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
   opacity: 0;
   transform: translateY(0);
   transition: transform 0.6s ease, opacity 0.6s ease;
@@ -93,7 +84,6 @@ html, body {
   z-index: 2;
 }
 
-
 .post img,
 .post video {
   width: 100%;
@@ -112,7 +102,7 @@ html, body {
   padding: 1rem 1.25rem;
   border-radius: 6px;
   backdrop-filter: blur(8px);
-  z-index: 3; /* above media */
+  z-index: 3;
 }
 
 .overlay h2 {
@@ -137,42 +127,48 @@ html, body {
   font-family: var(--body-font);
 }
 
+
+.header-logo {
+  height: 60px; 
+  width: auto;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+
+/* Splash */
+
+
 #splash {
   position: fixed;
   inset: 0;
   background: #000;
   color: #fff;
+  z-index: 10;
+  transition: opacity 0.6s ease;
+  padding: 6rem 2rem 2rem; 
+}
+
+#splash .header-logo {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  height: 60px;
+  width: auto;
+  z-index: 11;
+}
+
+#splash .content-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: var(--body-font);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  z-index: 10; /* above feed */
-  transition: opacity 0.6s ease;
-}
-
-#splash.fade {
-  opacity: 0;
-  pointer-events: none;
-}
-
-#splash h1 {
-  font-size: 2rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-  font-family: var(--heading-font);
-}
-
-#splash h2, h4 {
-  padding-bottom: 1rem;
-  font-family: var(--body-font);
-}
-
-#splash p, button {
-  opacity: 0.7;
-  margin-bottom: 2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-family: var(--body-font);
+  justify-content: center;
+  text-align: center;
 }
 
 .button {
@@ -186,4 +182,173 @@ html, body {
   font-size: 1rem;
   margin: 4px 2px;
   cursor: pointer;
+  font-family: var(--body-font);
+}
+
+#splash h1 {
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  font-family: var(--heading-font);
+  text-align: center; 
+  width: 100%; 
+  max-width: 90%; 
+}
+
+#splash h2, h4 {
+  padding-bottom: 1rem;
+  font-family: var(--body-font);
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+}
+
+#splash h2 {
+  color:#ee00ff
+}
+
+#splash p {
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  font-family: var(--body-font);
+  text-align: center;
+  width: 100%;
+  max-width: 90%;
+  line-height: 1.6; 
+}
+
+/* Open Call */
+#opencall-page {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  z-index: 20;
+  overflow-y: auto; 
+}
+
+.content-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: var(--body-font);
+}
+
+#opencall-page .header-logo {
+  margin-bottom: 4rem; 
+}
+
+#opencall-page h1 {
+  font-family: var(--heading-font);
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+#opencall-page h3 {
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  margin: 2rem 0 1rem 0;
+  color: #fff;
+}
+
+.text-content {
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.text-content p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.text-content ul {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.text-content li {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+#opencall-page .button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+a.button {
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.submit-button {
+  background: #0a0a0a !important;
+  border: 2px solid #ff00ff !important;
+  color: #ff00ff !important;
+  text-shadow: 0 0 10px #ff00ff;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #ff00ff !important;
+  color: #000 !important;
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
+}
+
+.back-button {
+  background-color: #666;
+}
+
+.back-button:hover {
+  background-color: #777;
+}
+
+.page.hidden {
+  display: none;
+}
+
+.external-link {
+  color: #ee00ff;
+  text-decoration: underline;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.external-link:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  #splash {
+    padding: 1rem; 
+  }
+  
+  #splash h1, #splash h2, #splash h4, #splash p {
+    max-width: 95%; 
+  }
+  
+#opencall-page .content-container {
+  min-height: 100vh;
+  padding: 2rem 2rem 3rem;
+}
+  
+  #opencall-page h1 {
+    font-size: 2rem;
+  }
+  
+  #opencall-page .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #opencall-page .button-group .button {
+    width: 200px;
+  }
 }
