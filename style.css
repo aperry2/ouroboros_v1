@@ -31,7 +31,7 @@ html, body {
   background: #000;
   font-family: 'Inter', sans-serif;
   color: #fff;
-  touch-action: none;
+  touch-action: auto;
 }
 
 #feed {
