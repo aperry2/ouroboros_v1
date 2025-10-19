@@ -116,7 +116,6 @@ function initNavigation() {
     if (e.deltaY > 0) nextPost();
     if (e.deltaY < 0) prevPost();
   }, { passive: false });
-
 }
 
 // Pierce the Veil 
@@ -142,3 +141,75 @@ document.getElementById('back-from-opencall').addEventListener('click', () => {
   document.getElementById('feed').style.display = 'none'; 
   document.getElementById('opencall-page').scrollTop = 0;
 });
+
+
+
+
+
+// Neon Cursor Animation
+
+function initSnakeScales() {
+    console.log('🐍 初始化蛇鳞效果');
+    
+
+    const old = document.querySelector('.snake-scales-container');
+    if (old) old.remove();
+    
+
+    const container = document.createElement('div');
+    container.className = 'snake-scales-container';
+    document.body.appendChild(container);
+    
+
+    
+    document.addEventListener('mousemove', (e) => {
+
+        if (Math.random() > 0.5) return;
+        
+        createScale(e.clientX, e.clientY);
+    });
+    
+    function createScale(x, y) {
+
+        const scale = document.createElement('div');
+        scale.className = 'snake-scale';
+        
+        const size = 30 + Math.random() * 20;
+        
+        scale.style.cssText = `
+            left: ${x}px;
+            top: ${y}px;
+            width: ${size}px;
+            height: ${size}px;
+            transform: translate(-50%, -50%) rotate(${Math.random() * 360}deg);
+        `;
+        
+        container.appendChild(scale);
+        
+    
+        const glow = document.createElement('div');
+        glow.className = 'scale-glow';
+        
+        const glowSize = size * 2;
+        
+        glow.style.cssText = `
+            left: ${x}px;
+            top: ${y}px;
+            width: ${glowSize}px;
+            height: ${glowSize}px;
+            transform: translate(-50%, -50%);
+        `;
+        
+        container.appendChild(glow);
+        
+  
+        setTimeout(() => {
+            scale.remove();
+            glow.remove();
+        }, 3000);
+    }
+    
+}
+
+
+setTimeout(initSnakeScales, 500);

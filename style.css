@@ -181,8 +181,25 @@ html, body {
   display: inline-block;
   font-size: 1rem;
   margin: 4px 2px;
-  cursor: pointer;
+  /*cursor: pointer;*/
   font-family: var(--body-font);
+}
+
+.opencall-button {
+  background: transparent !important;
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 8px #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.opencall-button:hover {
+  background: transparent !important;
+  border: 2px solid #ff00ff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 12px #ff00ff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
 }
 
 #splash h1 {
@@ -288,28 +305,38 @@ a.button {
 }
 
 .submit-button {
-  background: #0a0a0a !important;
-  border: 2px solid #ff00ff !important;
-  color: #ff00ff !important;
-  text-shadow: 0 0 10px #ff00ff;
-  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+  background: transparent !important;
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 8px #ff00ff;
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
   transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-  background: #ff00ff !important;
-  color: #000 !important;
-  box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
+  background: transparent !important;
+  border: 2px solid #ff00ff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 12px #ff00ff;
+  box-shadow: 0 0 20px rgba(255, 102, 255, 0.8);
 }
 
 .back-button {
-  background-color: #666;
+  background: transparent !important;
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 5px #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
 }
 
 .back-button:hover {
-  background-color: #777;
+  background: transparent !important;
+  border: 2px solid #ababab !important;
+  color: #616161 !important;
+  text-shadow: 0 0 5px #616161;
+  box-shadow: 0 0 8px rgba(171, 171, 171, 0.4);
 }
-
 .page.hidden {
   display: none;
 }
@@ -350,5 +377,74 @@ a.button {
   
   #opencall-page .button-group .button {
     width: 200px;
+  }
+}
+
+
+
+.snake-scales-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999; 
+  mix-blend-mode: screen;
+  overflow: hidden;
+}
+
+.snake-scale {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: radial-gradient(circle, 
+    #ff00ff 0%,
+    rgba(255, 0, 255, 0.3) 40%,
+    transparent 70%
+  );
+  filter: blur(2px) drop-shadow(0 0 8px #ff00ff);
+  opacity: 0.8;
+  animation: scaleFade 3s ease-out forwards;
+}
+
+.scale-glow {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, 
+    rgba(255, 0, 255, 0.4) 0%,
+    rgba(255, 0, 255, 0.2) 50%,
+    transparent 80%
+  );
+  filter: blur(8px);
+  opacity: 0.6;
+  animation: glowFade 2s ease-out forwards;
+}
+
+
+@keyframes scaleFade {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.5) rotate(360deg);
+  }
+}
+
+@keyframes glowFade {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
   }
 }
