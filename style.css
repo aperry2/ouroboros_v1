@@ -1,3 +1,24 @@
+@font-face {
+  font-family: 'JetBrainsMonoNL-Thin';
+  src: url('fonts/JetBrainsMonoNL-Thin.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lohengrin';
+  src: url('fonts/Lohengrin.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --heading-font: 'Lohengrin', serif;
+  --body-font: 'JetBrainsMonoNL-Thin', monospace;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -98,6 +119,7 @@ html, body {
   font-size: 1.4rem;
   font-weight: 600;
   margin-bottom: 0.2rem;
+  font-family: var(--heading-font);
 }
 
 .overlay h3 {
@@ -105,12 +127,14 @@ html, body {
   font-weight: 400;
   opacity: 0.8;
   margin-bottom: 0.3rem;
+  font-family: var(--body-font);
 }
 
 .overlay p {
   font-size: 0.9rem;
   line-height: 1.3;
   opacity: 0.75;
+  font-family: var(--body-font);
 }
 
 #splash {
@@ -122,11 +146,8 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  z-index: 10;
+  z-index: 10; /* above feed */
   transition: opacity 0.6s ease;
-  padding: 2rem;
-  font-family: 'Inter', sans-serif;
 }
 
 #splash.fade {
@@ -134,73 +155,35 @@ html, body {
   pointer-events: none;
 }
 
-
 #splash h1 {
-  font-size: 2.4rem;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.4rem;
-  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  font-family: var(--heading-font);
 }
 
-#splash h2 {
-  font-size: 1.25rem;
-  font-weight: 400;
-  opacity: 0.8;
-  margin-top: 0;
-  margin-bottom: 1.4rem;
+#splash h2, h4 {
+  padding-bottom: 1rem;
+  font-family: var(--body-font);
 }
 
-
-.curator-info {
-  font-size: 0.9rem;
-  line-height: 1.4;
+#splash p, button {
   opacity: 0.7;
   margin-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: var(--body-font);
 }
 
-.curator-info p {
-  margin: 0.2rem 0;
-}
-
-.biennale {
-  opacity: 0.8;
-}
-
-
-.statement {
-  max-width: 700px;
-  margin: 0 auto 2.4rem auto;
+.button {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   font-size: 1rem;
-  color: #ccc;
-  line-height: 1.5;
-}
-
-.statement p {
-  margin: 0.5rem 0;
-}
-
-
-#enter {
-  padding: 10px 28px;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  color: #fff;
-  background: none;
-  border: 1px solid rgba(255,255,255,0.6);
-  border-radius: 999px;
+  margin: 4px 2px;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#enter:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: #fff;
-  transform: scale(1.05);
-}
-
-
-.loading {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  opacity: 0.7;
 }

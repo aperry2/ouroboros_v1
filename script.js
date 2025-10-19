@@ -38,11 +38,17 @@ function showPost(newIndex) {
 
   if (newIndex === oldIndex) return;
 
-  // Determine forward/backward
+  // Determine direction for smooth infinite scroll feel
   let forward;
-  if (oldIndex === posts.length - 1 && newIndex === 0) forward = true;
-  else if (oldIndex === 0 && newIndex === posts.length - 1) forward = false;
-  else forward = newIndex > oldIndex;
+  if (oldIndex === posts.length - 1 && newIndex === 0) {
+    // loop end -> start: new post should come from bottom
+    forward = true;
+  } else if (oldIndex === 0 && newIndex === posts.length - 1) {
+    // loop start -> end: new post should come from top
+    forward = false;
+  } else {
+    forward = newIndex > oldIndex;
+  }
 
   const oldPostEl = allPosts[oldIndex];
   const newPostEl = allPosts[newIndex];
