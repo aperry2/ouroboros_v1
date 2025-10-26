@@ -122,12 +122,21 @@ function initNavigation() {
 document.getElementById('enter').addEventListener('click', () => {
   document.getElementById('splash').classList.add('fade');
   document.getElementById('opencall-page').classList.add('hidden');
+  document.getElementById('feed').classList.remove('hidden');
   document.getElementById('feed').style.display = 'block'; 
   initApp();
 });
 
 // Open Call 
 document.getElementById('opencall').addEventListener('click', () => {
+  document.getElementById('splash').classList.add('fade');
+  document.getElementById('opencall-page').classList.remove('hidden');
+  document.getElementById('feed').style.display = 'none'; 
+  document.getElementById('opencall-page').scrollTop = 0;
+});
+
+// Feed
+document.getElementById('feed').addEventListener('click', () => {
   document.getElementById('splash').classList.add('fade');
   document.getElementById('opencall-page').classList.remove('hidden');
   document.getElementById('feed').style.display = 'none'; 
