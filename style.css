@@ -71,21 +71,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* -------- FEED (must remain full-screen, no scroll) -------- */
 #feed {
+  /* make feed cover the viewport and prevent scrolling inside it */
   position: fixed;
   inset: 0;
+  /* top:0; right:0; bottom:0; left:0; */
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  /* allow vertical scroll */
-  -webkit-overflow-scrolling: touch;
-  /* smooth scrolling on iOS */
-  overflow-x: hidden;
+  overflow: hidden;
+  /* no scrolling for feed */
   background: #000;
   display: none;
-  touch-action: pan-y;
+  -webkit-overflow-scrolling: none;
 }
-
 
 .post {
   position: absolute;
