@@ -3,14 +3,30 @@ let posts = [];
 let currentIndex = 0;
 
 function initApp() {
-  fetch('feedData.json')
-    .then(res => res.json())
-    .then(data => {
+  // show temporary loading state
+  feed.innerHTML = '<div class="loading">Loading...</div>';
+
+  fetch('feedData.json?cache=' + Date.now()) // bust GitHub cache
+    .then(function (res) {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.text();
+    })
+    .then(function (text) {
+      // handle accidental HTML fallback (GitHub 404 returns HTML, not JSON)
+      if (text.trim().startsWith('<')) throw new Error('Received HTML instead of JSON');
+      return JSON.parse(text);
+    })
+    .then(function (data) {
       posts = data;
       renderPosts(posts);
-      initNavigation();
+      if (typeof initNavigation === 'function') initNavigation();
+    })
+    .catch(function (err) {
+      console.error('Error loading feedData.json:', err);
+      feed.innerHTML = '<div class="loading">Error loading feed.</div>';
     });
 }
+
 
 function renderPosts(posts) {
   feed.innerHTML = '';
