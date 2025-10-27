@@ -238,6 +238,23 @@ html, body {
   box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
 }
 
+.veil-button {
+  background: transparent !important;
+  border: 2px solid #ffffff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 8px #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.veil-button:hover {
+  background: transparent !important;
+  border: 2px solid #ff00ff !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 12px #ff00ff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+}
+
 #splash h1 {
   font-size: 2rem;
   letter-spacing: 0.05em;
