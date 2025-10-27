@@ -1,20 +1,32 @@
 [
   {
-    "artist": "Alan Perry",
-    "title": "Test 1",
-    "description": "A test.",
-    "src": "alan1.png"
+    "artist": "laramzp",
+    "title": "archive.local",
+    "description": "A digital séance where users meet the ghosts of the internet—an interface of broken code, lingering memory, and unfinished conversations.",
+    "src": "lara.mp4"
   },
   {
-    "artist": "Alan Perry",
-    "title": "Test 2",
-    "description": "A test.",
-    "src": "alan2.png"
+    "artist": "Josh Urban Davis",
+    "title": "The Deleted World Tarot",
+    "description": "The connection between emerging technologies and the occult is queer.",
+    "src": "tbd.jpg"
   },
   {
-    "artist": "Alan Perry",
-    "title": "Test 3",
-    "description": "A test. this one has a really long description to test edge cases in length. wow this is like a lot of text huh? how else can we pad this? maybe we can add 'no thanks, i'd rather not stay on the screen' to see if that stays on the screen.",
-    "src": "alan3.png"
-  }
+    "artist": "Nicolas Tilly",
+    "title": "Subterranean Dreams",
+    "description": "A magical experience of sound and images. Full experience <a href=\"https://sub-dreams.nicolastilly.fr/\">here<a>.",
+    "src": "tilly.png"
+  },
+  {
+    "artist": "Jacenia (Tzu-Hsuan) Li",
+    "title": "Screen of Deception",
+    "description": "Video art that collects pieces from the screen and project them onto a virtual maze.",
+    "src": "tbd.jpg"
+  },
+  {
+    "artist": "TELLE",
+    "title": "WirrWarr",
+    "description": "The piece offers a haunting vision of humanity immersed in machine networks, echoing the spirit of AI art.",
+    "src": "tbd.jpg"
+  },
 ]
