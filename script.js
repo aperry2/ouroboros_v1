@@ -3,7 +3,7 @@ let posts = [];
 let currentIndex = 0;
 
 function initApp() {
-  fetch('data.json')
+  fetch('feedData.json')
     .then(res => res.json())
     .then(data => {
       posts = data;
