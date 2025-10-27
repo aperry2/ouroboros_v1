@@ -19,7 +19,8 @@ function renderPosts(posts) {
     const postEl = document.createElement('div');
     postEl.classList.add('post', 'active');
 
-    const mediaTag = post.src.endsWith('.mp4')
+    const isVideo = post.src.endsWith('.mp4');
+    const mediaTag = isVideo
       ? `<video class="post-video" playsinline muted loop preload="auto">
            <source src="${post.src}" type="video/mp4">
          </video>`
@@ -36,14 +37,32 @@ function renderPosts(posts) {
 
     feed.appendChild(postEl);
 
-    if (post.src.endsWith('.mp4')) {
+    if (isVideo) {
       const videoEl = postEl.querySelector('video');
+
+      // ensure autoplay compliance
+      videoEl.muted = true;
+      videoEl.playsInline = true;
+
       videoEl.addEventListener('canplay', () => {
-        videoEl.play().catch(err => console.warn('Autoplay prevented:', err));
+        const attemptPlay = videoEl.play();
+        if (attemptPlay !== undefined) {
+          attemptPlay.catch(() => {
+            // fallback: wait for first user gesture to start video
+            const startPlayback = () => {
+              videoEl.play();
+              document.removeEventListener('touchstart', startPlayback);
+              document.removeEventListener('click', startPlayback);
+            };
+            document.addEventListener('touchstart', startPlayback, { once: true });
+            document.addEventListener('click', startPlayback, { once: true });
+          });
+        }
       });
     }
   });
 }
+
 
 function showPost(newIndex) {
   const allPosts = document.querySelectorAll('.post');
