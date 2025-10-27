@@ -13,23 +13,36 @@ function initApp() {
 }
 
 function renderPosts(posts) {
-  posts.forEach((post) => {
+  feed.innerHTML = '';
+
+  posts.forEach(post => {
     const postEl = document.createElement('div');
-    postEl.classList.add('post');
+    postEl.classList.add('post', 'active');
+
+    const mediaTag = post.src.endsWith('.mp4')
+      ? `<video class="post-video" playsinline muted loop preload="auto">
+           <source src="${post.src}" type="video/mp4">
+         </video>`
+      : `<img src="${post.src}" alt="${post.title}">`;
+
     postEl.innerHTML = `
-      <img src="${post.src}" alt="${post.title}">
+      ${mediaTag}
       <div class="overlay">
         <h2>${post.title}</h2>
         <h3>${post.artist}</h3>
         <p>${post.description}</p>
       </div>
     `;
-    feed.appendChild(postEl);
-  });
 
-  // First post visible
-  const firstPost = document.querySelector('.post');
-  if (firstPost) firstPost.classList.add('active');
+    feed.appendChild(postEl);
+
+    if (post.src.endsWith('.mp4')) {
+      const videoEl = postEl.querySelector('video');
+      videoEl.addEventListener('canplay', () => {
+        videoEl.play().catch(err => console.warn('Autoplay prevented:', err));
+      });
+    }
+  });
 }
 
 function showPost(newIndex) {
@@ -58,7 +71,7 @@ function showPost(newIndex) {
   oldPostEl.classList.add(forward ? 'exit-up' : 'exit-down');
 
   // Prepare new post offscreen
-  newPostEl.classList.remove('exit-up','exit-down','active','forward-start','backward-start');
+  newPostEl.classList.remove('exit-up', 'exit-down', 'active', 'forward-start', 'backward-start');
   newPostEl.classList.add(forward ? 'forward-start' : 'backward-start');
 
   // Force reflow
@@ -73,7 +86,7 @@ function showPost(newIndex) {
 
   // Optional: remove exit-* class from old post after transition
   oldPostEl.addEventListener('transitionend', () => {
-    oldPostEl.classList.remove('exit-up','exit-down');
+    oldPostEl.classList.remove('exit-up', 'exit-down');
   }, { once: true });
 }
 
@@ -118,106 +131,103 @@ function initNavigation() {
   }, { passive: false });
 }
 
-// Pierce the Veil 
-document.getElementById('enter').addEventListener('click', () => {
-  document.getElementById('splash').classList.add('fade');
-  document.getElementById('opencall-page').classList.add('hidden');
-  document.getElementById('feed').classList.remove('hidden');
-  document.getElementById('feed').style.display = 'block'; 
+// --- EVENT LISTENERS --- //
+
+document.getElementById('enter').addEventListener('click', function () {
+  const splash = document.getElementById('splash');
+  const snakeScales = document.querySelector('.snake-scales-container');
+
+  splash.style.display = 'none';
+  feed.style.display = 'block';
+  if (snakeScales) snakeScales.style.display = 'none'; // hide scales
   initApp();
 });
 
-// Open Call 
-document.getElementById('opencall').addEventListener('click', () => {
-  document.getElementById('splash').classList.add('fade');
-  document.getElementById('opencall-page').classList.remove('hidden');
-  document.getElementById('feed').style.display = 'none'; 
-  document.getElementById('opencall-page').scrollTop = 0;
+document.getElementById('opencall').addEventListener('click', function () {
+  const splash = document.getElementById('splash');
+  const opencallPage = document.getElementById('opencall-page');
+  const snakeScales = document.querySelector('.snake-scales-container');
+
+  splash.style.display = 'none';
+  if (snakeScales) snakeScales.style.display = 'block'; // restore scales
+  opencallPage.classList.remove('hidden');
 });
 
-// Feed
-document.getElementById('feed').addEventListener('click', () => {
-  document.getElementById('splash').classList.add('fade');
-  document.getElementById('opencall-page').classList.remove('hidden');
-  document.getElementById('feed').style.display = 'none'; 
-  document.getElementById('opencall-page').scrollTop = 0;
+document.getElementById('back-from-opencall').addEventListener('click', function () {
+  const splash = document.getElementById('splash');
+  const opencallPage = document.getElementById('opencall-page');
+  const snakeScales = document.querySelector('.snake-scales-container');
+
+  opencallPage.classList.add('hidden');
+  splash.style.display = 'block';
+  if (snakeScales) snakeScales.style.display = 'block'; // restore scales
 });
-
-// Return 
-document.getElementById('back-from-opencall').addEventListener('click', () => {
-  document.getElementById('splash').classList.remove('fade');
-  document.getElementById('opencall-page').classList.add('hidden');
-  document.getElementById('feed').style.display = 'none'; 
-  document.getElementById('opencall-page').scrollTop = 0;
-});
-
-
 
 
 
 // Neon Cursor Animation
 
 function initSnakeScales() {
-    console.log('🐍 初始化蛇鳞效果');
-    
+  console.log('🐍 初始化蛇鳞效果');
 
-    const old = document.querySelector('.snake-scales-container');
-    if (old) old.remove();
-    
 
-    const container = document.createElement('div');
-    container.className = 'snake-scales-container';
-    document.body.appendChild(container);
-    
+  const old = document.querySelector('.snake-scales-container');
+  if (old) old.remove();
 
-    
-    document.addEventListener('mousemove', (e) => {
 
-        if (Math.random() > 0.5) return;
-        
-        createScale(e.clientX, e.clientY);
-    });
-    
-    function createScale(x, y) {
+  const container = document.createElement('div');
+  container.className = 'snake-scales-container';
+  document.body.appendChild(container);
 
-        const scale = document.createElement('div');
-        scale.className = 'snake-scale';
-        
-        const size = 30 + Math.random() * 20;
-        
-        scale.style.cssText = `
+
+
+  document.addEventListener('mousemove', (e) => {
+
+    if (Math.random() > 0.5) return;
+
+    createScale(e.clientX, e.clientY);
+  });
+
+  function createScale(x, y) {
+
+    const scale = document.createElement('div');
+    scale.className = 'snake-scale';
+
+    const size = 30 + Math.random() * 20;
+
+    scale.style.cssText = `
             left: ${x}px;
             top: ${y}px;
             width: ${size}px;
             height: ${size}px;
             transform: translate(-50%, -50%) rotate(${Math.random() * 360}deg);
         `;
-        
-        container.appendChild(scale);
-        
-    
-        const glow = document.createElement('div');
-        glow.className = 'scale-glow';
-        
-        const glowSize = size * 2;
-        
-        glow.style.cssText = `
+
+    container.appendChild(scale);
+
+
+    const glow = document.createElement('div');
+    glow.className = 'scale-glow';
+
+    const glowSize = size * 2;
+
+    glow.style.cssText = `
             left: ${x}px;
             top: ${y}px;
             width: ${glowSize}px;
             height: ${glowSize}px;
             transform: translate(-50%, -50%);
         `;
-        
-        container.appendChild(glow);
-        
-  
-        setTimeout(() => {
-            scale.remove();
-            glow.remove();
-        }, 3000);
-    }
-    
+
+    container.appendChild(glow);
+
+
+    setTimeout(() => {
+      scale.remove();
+      glow.remove();
+    }, 3000);
+  }
+
 }
 
 
