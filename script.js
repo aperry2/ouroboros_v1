@@ -27,11 +27,37 @@ function initApp() {
       renderPosts(posts);
       initNavigation();
       hideLoadingState();
+      
+      // 添加这一行：在隐藏loading后显示提示框
+      showTipsPopup();
     })
     .catch(function (err) {
       console.error('Error loading feedData.json:', err);
       showErrorState();
     });
+}
+
+// 添加提示框函数
+function showTipsPopup() {
+  console.log('💡 显示操作提示框');
+  
+  // 创建提示框
+  const popup = document.createElement('div');
+  popup.className = 'tips-popup';
+  popup.innerHTML = 'scroll or use arrow keys to roam around';
+  document.body.appendChild(popup);
+  
+  // 2秒后开始淡出
+  setTimeout(() => {
+    popup.classList.add('fade-out');
+  }, 2000);
+  
+  // 4秒后移除元素
+  setTimeout(() => {
+    if (popup.parentNode) {
+      popup.remove();
+    }
+  }, 4000);
 }
 
 function showLoadingState() {
