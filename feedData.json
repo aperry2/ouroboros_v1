@@ -60,15 +60,28 @@
     "src": "tbd.jpg"
   },
     {
-    "artist": "abc",
-    "title": "def",
-    "description": "ghi",
+    "artist": "Omnia Sol",
+    "title": "Cosmic Microwave Banishing Ritual",
+    "description": "Cosmic Microwave Banishing Ritual is an occult ceremony scryed through the static of an analog television.",
     "src": "tbd.jpg"
   },
     {
-    "artist": "abc",
-    "title": "def",
-    "description": "ghi",
+    "artist": "Gloria Fan Duan",
+    "title": "Ecotone no. 001.1",
+    "description": "\"Ecotone no. 001.1,\" a transitional zone where biological and artificial ecosystems meet and merge, explores regeneration not as return to prior equilibrium but continual reconfiguration.",
+    "src": "tbd.jpg"
+  },
+    {
+    "artist": "Oana Clitan",
+    "title": "Rebirth (Băbăluda)",
+    "description": "Rebirth reimagines a Romanian spring ritual, following Măriuța as she navigates myth, memory, and nature in a digital, environmentally fragile world.",
+    "src": "tbd.jpg"
+  },
+  {
+    "artist": "Lee Yun",
+    "title": "Released by the Tides",
+    "description": "Released by the Tides is a single-channel video exploring memory, ritual, and the sea as a threshold between presence and absence.",
     "src": "tbd.jpg"
   }
+]
 ]
