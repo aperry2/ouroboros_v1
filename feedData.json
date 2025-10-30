@@ -32,7 +32,43 @@
   {
     "artist": "Heather Freeman",
     "title": "Mosaic",
-    "description": "Mosaic is an digitally-native divination system created by Heather D. Freeman and Tres Henry for Mac, Windows, and Linux machines.",
+    "description": "Mosaic is an digitally-native divination system created by Heather D. Freeman and Tres Henry for Mac, Windows, and Linux machines.  Software available <a href=\"https://https://mosaicdivination.com/\"here</a>.",
     "src": "heather.png"
+  },
+    {
+    "artist": "Alan Perry",
+    "title": "TBD",
+    "description": "~~~",
+    "src": "tbd.jpg"
+  },
+    {
+    "artist": "Snow Chen",
+    "title": "TBD",
+    "description": "~~~",
+    "src": "tbd.jpg"
+  },
+    {
+    "artist": "Chomi (Xiyuan) Zhou",
+    "title": "def",
+    "description": "Morphogenesis stages the birth of synthetic consciousness as ritual, where body and longing converge.",
+    "src": "tbd.jpg"
+  },
+    {
+    "artist": "Eli Joteva",
+    "title": "Cascading Entropies I",
+    "description": "A visual meditation on flower data blooming and decaying through AI rendering—a poetic confrontation with technology eating its own tail, consuming vast resources to generate fleeting digital beauty.",
+    "src": "tbd.jpg"
+  },
+    {
+    "artist": "abc",
+    "title": "def",
+    "description": "ghi",
+    "src": "tbd.jpg"
+  },
+    {
+    "artist": "abc",
+    "title": "def",
+    "description": "ghi",
+    "src": "tbd.jpg"
   }
 ]
