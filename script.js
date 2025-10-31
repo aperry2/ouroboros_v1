@@ -145,7 +145,7 @@ function renderPosts(posts) {
 function preloadAdjacentMedia(currentIndex) {
   const nextIndex = (currentIndex + 1) % posts.length;
   const prevIndex = (currentIndex - 1 + posts.length) % posts.length;
-  
+  x
   [nextIndex, prevIndex].forEach(index => {
     const post = posts[index];
     if (post && !post.preloaded) {
