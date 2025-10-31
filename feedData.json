@@ -69,7 +69,7 @@
     "artist": "Gloria Fan Duan",
     "title": "Ecotone no. 001.1",
     "description": "\"Ecotone no. 001.1,\" a transitional zone where biological and artificial ecosystems meet and merge, explores regeneration not as return to prior equilibrium but continual reconfiguration.",
-    "src": "tbd.jpg"
+    "src": "gloria.mp4"
   },
     {
     "artist": "Oana Clitan",
@@ -82,5 +82,11 @@
     "title": "Released by the Tides",
     "description": "Released by the Tides is a single-channel video exploring memory, ritual, and the sea as a threshold between presence and absence.",
     "src": "yun.mp4"
+  },
+  {
+    "artist": "Doug Rosman",
+    "title": "Bloom",
+    "description": "Bloom is a meditation on erasure as a response to the consumptive drive of an overwhelming machine.",
+    "src": "doug.mp4"
   }
 ]
