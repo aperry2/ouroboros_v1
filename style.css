@@ -104,11 +104,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-    color: #ee00ff;
-  text-decoration: none;
-}
-
 /* -------- FEED (must remain full-screen, no scroll) -------- */
 #feed {
   /* make feed cover the viewport and prevent scrolling inside it */
