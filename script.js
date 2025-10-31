@@ -6,7 +6,7 @@ let isNavigationReady = false;
 
 function initApp() {
   showLoadingState();
-  
+
   const splash = document.getElementById('splash');
   const snakeScales = document.querySelector('.snake-scales-container');
   splash.style.display = 'none';
@@ -27,7 +27,7 @@ function initApp() {
       renderPosts(posts);
       initNavigation();
       hideLoadingState();
-      
+
       // 添加这一行：在隐藏loading后显示提示框
       showTipsPopup();
     })
@@ -40,18 +40,18 @@ function initApp() {
 // 添加提示框函数
 function showTipsPopup() {
   console.log('💡 显示操作提示框');
-  
+
   // 创建提示框
   const popup = document.createElement('div');
   popup.className = 'tips-popup';
   popup.innerHTML = 'scroll or use arrow keys to roam around';
   document.body.appendChild(popup);
-  
+
   // 2秒后开始淡出
   setTimeout(() => {
     popup.classList.add('fade-out');
   }, 2000);
-  
+
   // 4秒后移除元素
   setTimeout(() => {
     if (popup.parentNode) {
@@ -102,7 +102,7 @@ function renderPosts(posts) {
   posts.forEach((post, index) => {
     const postEl = document.createElement('div');
     postEl.classList.add('post');
-    
+
     if (index !== 0) {
       postEl.style.opacity = '0';
       postEl.style.visibility = 'hidden';
@@ -132,10 +132,10 @@ function renderPosts(posts) {
       const videoEl = postEl.querySelector('video');
       videoEl.muted = true;
       videoEl.playsInline = true;
-      
+
       videoEl.addEventListener('loadeddata', () => {
         if (index === 0) {
-          videoEl.play().catch(() => {});
+          videoEl.play().catch(() => { });
         }
       });
     }
@@ -145,7 +145,7 @@ function renderPosts(posts) {
 function preloadAdjacentMedia(currentIndex) {
   const nextIndex = (currentIndex + 1) % posts.length;
   const prevIndex = (currentIndex - 1 + posts.length) % posts.length;
-  
+
   [nextIndex, prevIndex].forEach(index => {
     const post = posts[index];
     if (post && !post.preloaded) {
@@ -165,38 +165,44 @@ function preloadAdjacentMedia(currentIndex) {
 
 function showPost(newIndex) {
   if (!isNavigationReady) return;
-  
+
   const allPosts = document.querySelectorAll('.post');
   const oldIndex = currentIndex;
   if (newIndex === oldIndex) return;
 
   preloadAdjacentMedia(newIndex);
 
-  allPosts[newIndex].style.opacity = '1';
-  allPosts[newIndex].style.visibility = 'visible';
-  
-  let forward;
-  if (oldIndex === posts.length - 1 && newIndex === 0) {
-    forward = true;
-  } else if (oldIndex === 0 && newIndex === posts.length - 1) {
-    forward = false;
-  } else {
-    forward = newIndex > oldIndex;
-  }
-
   const oldPostEl = allPosts[oldIndex];
   const newPostEl = allPosts[newIndex];
+  const oldVideo = oldPostEl.querySelector('video');
+  const newVideo = newPostEl.querySelector('video');
+
+  // Pause the old video if any
+  if (oldVideo) oldVideo.pause();
+
+  // Ensure visibility for the new post
+  newPostEl.style.opacity = '1';
+  newPostEl.style.visibility = 'visible';
+
+  // Transition direction logic
+  let forward;
+  if (oldIndex === posts.length - 1 && newIndex === 0) forward = true;
+  else if (oldIndex === 0 && newIndex === posts.length - 1) forward = false;
+  else forward = newIndex > oldIndex;
 
   oldPostEl.classList.remove('active');
   oldPostEl.classList.add(forward ? 'exit-up' : 'exit-down');
 
   newPostEl.classList.remove('exit-up', 'exit-down', 'active', 'forward-start', 'backward-start');
   newPostEl.classList.add(forward ? 'forward-start' : 'backward-start');
-
   void newPostEl.offsetHeight;
-
   newPostEl.classList.add('active');
   newPostEl.classList.remove(forward ? 'forward-start' : 'backward-start');
+
+  // Play the new video if present
+  if (newVideo) {
+    newVideo.play().catch((err) => console.warn('Autoplay blocked:', err));
+  }
 
   currentIndex = newIndex;
 
@@ -223,12 +229,12 @@ function prevPost() {
 
 function initNavigation() {
   let startY = 0;
-  
+
   document.addEventListener('touchstart', (e) => {
     if (!isNavigationReady) return;
     startY = e.touches[0].clientY;
   });
-  
+
   document.addEventListener('touchend', (e) => {
     if (!isNavigationReady) return;
     const endY = e.changedTouches[0].clientY;
@@ -247,7 +253,7 @@ function initNavigation() {
 
   window.addEventListener('wheel', (e) => {
     if (!isNavigationReady) return;
-    
+
     e.preventDefault();
     const now = Date.now();
     if (now - lastWheelTime < 600) return;
