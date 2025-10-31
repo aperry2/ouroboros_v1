@@ -1,92 +1,92 @@
 [
-  {
-    "artist": "laramzp",
-    "title": "archive.local",
-    "description": "A digital séance where users meet the ghosts of the internet—an interface of broken code, lingering memory, and unfinished conversations.",
-    "src": "lara.mp4"
-  },
-  {
-    "artist": "Josh Urban Davis",
-    "title": "The Deleted World Tarot",
-    "description": "The connection between emerging technologies and the occult is queer.",
-    "src": "josh.png"
-  },
-  {
-    "artist": "Nicolas Tilly",
-    "title": "Subterranean Dreams",
-    "description": "A magical experience of sound and images. Full experience <a href=\"https://sub-dreams.nicolastilly.fr/\">here<a>.",
-    "src": "tilly.mp4"
-  },
-  {
-    "artist": "Jacenia (Tzu-Hsuan) Li",
-    "title": "Screen of Deception",
-    "description": "Video art that collects pieces from the screen and project them onto a virtual maze.",
-    "src": "jacinia.mp4"
-  },
-  {
-    "artist": "TELLE",
-    "title": "WirrWarr",
-    "description": "The piece offers a haunting vision of humanity immersed in machine networks, echoing the spirit of AI art.",
-    "src": "telle.mp4"
-  },
-  {
-    "artist": "Heather Freeman",
-    "title": "Mosaic",
-    "description": "Mosaic is an digitally-native divination system created by Heather D. Freeman and Tres Henry for Mac, Windows, and Linux machines.  Software available <a href=\"https://https://mosaicdivination.com/\">here</a>.",
-    "src": "heather.png"
-  },
     {
-    "artist": "Alan Perry",
-    "title": "TBD",
-    "description": "~~~",
-    "src": "tbd.jpg"
-  },
+        "artist": "laramzp",
+        "title": "archive.local",
+        "description": "A digital séance where users meet the ghosts of the internet—an interface of broken code, lingering memory, and unfinished conversations.",
+        "src": "lara.mp4"
+    },
     {
-    "artist": "Snow Chen",
-    "title": "TBD",
-    "description": "~~~",
-    "src": "tbd.jpg"
-  },
+        "artist": "Josh Urban Davis",
+        "title": "The Deleted World Tarot",
+        "description": "The connection between emerging technologies and the occult is queer.",
+        "src": "josh.png"
+    },
     {
-    "artist": "Chomi (Xiyuan) Zhou",
-    "title": "Morphogenesis",
-    "description": "Morphogenesis stages the birth of synthetic consciousness as ritual, where body and longing converge.",
-    "src": "chomi.png"
-  },
+        "artist": "Nicolas Tilly",
+        "title": "Subterranean Dreams",
+        "description": "A magical experience of sound and images. Full experience <a href=\"https://sub-dreams.nicolastilly.fr/\">here<a>.",
+        "src": "tilly.mp4"
+    },
     {
-    "artist": "Eli Joteva",
-    "title": "Cascading Entropies I",
-    "description": "A visual meditation on flower data blooming and decaying through AI rendering—a poetic confrontation with technology eating its own tail, consuming vast resources to generate fleeting digital beauty.",
-    "src": "joteva.mp4"
-  },
+        "artist": "Jacenia (Tzu-Hsuan) Li",
+        "title": "Screen of Deception",
+        "description": "Video art that collects pieces from the screen and project them onto a virtual maze.",
+        "src": "jacinia.mp4"
+    },
     {
-    "artist": "Omnia Sol",
-    "title": "Cosmic Microwave Banishing Ritual",
-    "description": "Cosmic Microwave Banishing Ritual is an occult ceremony scryed through the static of an analog television.",
-    "src": "omnia.mp4"
-  },
+        "artist": "TELLE",
+        "title": "WirrWarr",
+        "description": "The piece offers a haunting vision of humanity immersed in machine networks, echoing the spirit of AI art.",
+        "src": "telle.mp4"
+    },
     {
-    "artist": "Gloria Fan Duan",
-    "title": "Ecotone no. 001.1",
-    "description": "\"Ecotone no. 001.1,\" a transitional zone where biological and artificial ecosystems meet and merge, explores regeneration not as return to prior equilibrium but continual reconfiguration.",
-    "src": "gloria.mp4"
-  },
+        "artist": "Heather Freeman",
+        "title": "Mosaic",
+        "description": "Mosaic is an digitally-native divination system created by Heather D. Freeman and Tres Henry for Mac, Windows, and Linux machines.  Software available <a href=\"https://https://mosaicdivination.com/\">here</a>.",
+        "src": "heather.png"
+    },
     {
-    "artist": "Oana Clitan",
-    "title": "Rebirth (Băbăluda)",
-    "description": "Rebirth reimagines a Romanian spring ritual, following Măriuța as she navigates myth, memory, and nature in a digital, environmentally fragile world.",
-    "src": "oana.mp4"
-  },
-  {
-    "artist": "Lee Yun",
-    "title": "Released by the Tides",
-    "description": "Released by the Tides is a single-channel video exploring memory, ritual, and the sea as a threshold between presence and absence.",
-    "src": "yun.mp4"
-  },
-  {
-    "artist": "Doug Rosman",
-    "title": "Bloom",
-    "description": "Bloom is a meditation on erasure as a response to the consumptive drive of an overwhelming machine.",
-    "src": "doug.mp4"
-  }
+        "artist": "Alan Perry",
+        "title": "TBD",
+        "description": "~~~",
+        "src": "tbd.jpg"
+    },
+    {
+        "artist": "Snow Chen",
+        "title": "TBD",
+        "description": "~~~",
+        "src": "tbd.jpg"
+    },
+    {
+        "artist": "Chomi (Xiyuan) Zhou",
+        "title": "Morphogenesis",
+        "description": "Morphogenesis stages the birth of synthetic consciousness as ritual, where body and longing converge.",
+        "src": "chomi.png"
+    },
+    {
+        "artist": "Eli Joteva",
+        "title": "Cascading Entropies I",
+        "description": "A visual meditation on flower data blooming and decaying through AI rendering—a poetic confrontation with technology eating its own tail, consuming vast resources to generate fleeting digital beauty.",
+        "src": "joteva.mp4"
+    },
+    {
+        "artist": "Omnia Sol",
+        "title": "Cosmic Microwave Banishing Ritual",
+        "description": "Cosmic Microwave Banishing Ritual is an occult ceremony scryed through the static of an analog television.",
+        "src": "omnia.mp4"
+    },
+    {
+        "artist": "Gloria Fan Duan",
+        "title": "Ecotone no. 001.1",
+        "description": "\"Ecotone no. 001.1,\" a transitional zone where biological and artificial ecosystems meet and merge, explores regeneration not as return to prior equilibrium but continual reconfiguration.",
+        "src": "gloria.mp4"
+    },
+    {
+        "artist": "Oana Clitan",
+        "title": "Rebirth (Băbăluda)",
+        "description": "Rebirth reimagines a Romanian spring ritual, following Măriuța as she navigates myth, memory, and nature in a digital, environmentally fragile world.",
+        "src": "oana.mp4"
+    },
+    {
+        "artist": "Lee Yun",
+        "title": "Released by the Tides",
+        "description": "Released by the Tides is a single-channel video exploring memory, ritual, and the sea as a threshold between presence and absence.",
+        "src": "yun.mp4"
+    },
+    {
+        "artist": "Doug Rosman",
+        "title": "Bloom",
+        "description": "Bloom is a meditation on erasure as a response to the consumptive drive of an overwhelming machine.",
+        "src": "doug.mp4"
+    }
 ]
