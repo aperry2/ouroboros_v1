@@ -31,15 +31,20 @@ function initApp() {
     });
 }
 
-// 添加提示框函数
+// 修复的提示框函数
 function showTipsPopup() {
   console.log('💡 显示操作提示框');
 
-  // 创建提示框
+  // 创建提示框并立即应用样式
   const popup = document.createElement('div');
   popup.className = 'tips-popup';
   popup.innerHTML = 'scroll or use arrow keys to roam around';
+  
+  // 立即添加到DOM
   document.body.appendChild(popup);
+
+  // 强制重绘以确保样式应用
+  void popup.offsetWidth;
 
   // 2秒后开始淡出
   setTimeout(() => {
@@ -67,7 +72,6 @@ function showLoadingState() {
   setTimeout(() => instruction.classList.add('fade-out'), 2500);
 }
 
-
 function hideLoadingState() {
   const loading = document.getElementById('loadingState');
   loading.classList.add('hidden');
@@ -78,7 +82,6 @@ function hideLoadingState() {
   }, 800);
   isNavigationReady = true;
 }
-
 
 function showErrorState() {
   loadingState.innerHTML = `
@@ -92,11 +95,10 @@ function preloadAllVideos(posts) {
   let loadedCount = 0;
 
   if (videoPosts.length === 0) {
-    // no videos: continue immediately
     hideLoadingState();
     renderPosts(posts);
     initNavigation();
-    showTipsPopup();
+    // 提示框现在在 renderPosts 完成后显示
     return;
   }
 
@@ -105,19 +107,16 @@ function preloadAllVideos(posts) {
     video.preload = 'auto';
     video.src = post.src;
 
-    // when loaded, increment counter
     video.addEventListener('canplaythrough', () => {
       loadedCount++;
       if (loadedCount === videoPosts.length) {
-        // all videos ready
         hideLoadingState();
         renderPosts(posts);
         initNavigation();
-        showTipsPopup();
+        // 提示框现在在 renderPosts 完成后显示
       }
     });
 
-    // if an error occurs, still count it (so it won't hang)
     video.addEventListener('error', () => {
       console.warn(`Failed to preload ${post.src}`);
       loadedCount++;
@@ -125,7 +124,7 @@ function preloadAllVideos(posts) {
         hideLoadingState();
         renderPosts(posts);
         initNavigation();
-        showTipsPopup();
+        // 提示框现在在 renderPosts 完成后显示
       }
     });
 
@@ -170,21 +169,24 @@ function renderPosts(posts) {
       videoEl.muted = true;
       videoEl.playsInline = true;
       videoEl.loop = true;
-      videoEl.preload = 'metadata'; // lighter than 'auto'
+      videoEl.preload = 'metadata';
 
-      // ✅ Critical for mobile: set src directly and call load()
       const source = videoEl.querySelector('source');
       if (source) {
         videoEl.src = source.src;
         videoEl.load();
       }
 
-      // autoplay the first one
       if (index === 0) {
         videoEl.play().catch(() => { });
       }
     }
   });
+
+  // 确保所有帖子渲染完成后再显示提示
+  setTimeout(() => {
+    showTipsPopup();
+  }, 100);
 }
 
 function preloadAdjacentMedia(currentIndex) {
@@ -222,14 +224,11 @@ function showPost(newIndex) {
   const oldVideo = oldPostEl.querySelector('video');
   const newVideo = newPostEl.querySelector('video');
 
-  // Pause the old video if any
   if (oldVideo) oldVideo.pause();
 
-  // Ensure visibility for the new post
   newPostEl.style.opacity = '1';
   newPostEl.style.visibility = 'visible';
 
-  // Transition direction logic
   let forward;
   if (oldIndex === posts.length - 1 && newIndex === 0) forward = true;
   else if (oldIndex === 0 && newIndex === posts.length - 1) forward = false;
@@ -244,7 +243,6 @@ function showPost(newIndex) {
   newPostEl.classList.add('active');
   newPostEl.classList.remove(forward ? 'forward-start' : 'backward-start');
 
-  // Play the new video if present
   if (newVideo) {
     newVideo.play().catch((err) => console.warn('Autoplay blocked:', err));
   }
