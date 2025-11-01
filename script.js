@@ -13,25 +13,19 @@ function initApp() {
   if (snakeScales) snakeScales.style.display = 'none';
 
   fetch('feedData.json?cache=' + Date.now())
-    .then(function (res) {
+    .then(res => {
       if (!res.ok) throw new Error('Network response was not ok');
       return res.text();
     })
-    .then(function (text) {
+    .then(text => {
       if (text.trim().startsWith('<')) throw new Error('Received HTML instead of JSON');
       return JSON.parse(text);
     })
-    .then(function (data) {
+    .then(data => {
       posts = data;
-      preloadMedia(posts);
-      renderPosts(posts);
-      initNavigation();
-      hideLoadingState();
-
-      // 添加这一行：在隐藏loading后显示提示框
-      showTipsPopup();
+      preloadAllVideos(posts);
     })
-    .catch(function (err) {
+    .catch(err => {
       console.error('Error loading feedData.json:', err);
       showErrorState();
     });
@@ -61,16 +55,30 @@ function showTipsPopup() {
 }
 
 function showLoadingState() {
-  loadingState.classList.remove('hidden');
+  const loading = document.getElementById('loadingState');
+  const instruction = loading.querySelector('.loading-instruction');
   feed.style.display = 'none';
+  loading.classList.remove('hidden');
+  loading.style.display = 'flex';
   isNavigationReady = false;
+
+  // reset + show instruction fade
+  instruction.classList.remove('fade-out');
+  setTimeout(() => instruction.classList.add('fade-out'), 2500);
 }
 
+
 function hideLoadingState() {
-  loadingState.classList.add('hidden');
-  feed.style.display = 'block';
+  const loading = document.getElementById('loadingState');
+  loading.classList.add('hidden');
+  setTimeout(() => {
+    loading.style.display = 'none';
+    feed.style.display = 'block';
+    feed.classList.add('visible');
+  }, 800);
   isNavigationReady = true;
 }
+
 
 function showErrorState() {
   loadingState.innerHTML = `
@@ -79,20 +87,49 @@ function showErrorState() {
   `;
 }
 
-function preloadMedia(posts) {
-  const preloadBatch = posts.slice(0, 2);
-  preloadBatch.forEach((post, index) => {
-    setTimeout(() => {
-      if (post.src.endsWith('.mp4')) {
-        const video = document.createElement('video');
-        video.preload = 'auto';
-        video.src = post.src;
-        video.load();
-      } else {
-        const img = new Image();
-        img.src = post.src;
+function preloadAllVideos(posts) {
+  const videoPosts = posts.filter(p => p.src.endsWith('.mp4'));
+  let loadedCount = 0;
+
+  if (videoPosts.length === 0) {
+    // no videos: continue immediately
+    hideLoadingState();
+    renderPosts(posts);
+    initNavigation();
+    showTipsPopup();
+    return;
+  }
+
+  videoPosts.forEach(post => {
+    const video = document.createElement('video');
+    video.preload = 'auto';
+    video.src = post.src;
+
+    // when loaded, increment counter
+    video.addEventListener('canplaythrough', () => {
+      loadedCount++;
+      if (loadedCount === videoPosts.length) {
+        // all videos ready
+        hideLoadingState();
+        renderPosts(posts);
+        initNavigation();
+        showTipsPopup();
       }
-    }, index * 300);
+    });
+
+    // if an error occurs, still count it (so it won't hang)
+    video.addEventListener('error', () => {
+      console.warn(`Failed to preload ${post.src}`);
+      loadedCount++;
+      if (loadedCount === videoPosts.length) {
+        hideLoadingState();
+        renderPosts(posts);
+        initNavigation();
+        showTipsPopup();
+      }
+    });
+
+    video.load();
   });
 }
 

@@ -92,14 +92,17 @@
     </div>
   </div>
 
-  <!-- Loading 状态容器 -->
-  <div id="loadingState" class="loading-container hidden">
-    <div class="loading-spinner">Loading...</div>
-    <div class="loading-tips">scroll or use arrow keys to roam around</div>
+  <div id="feed"></div>
+
+  <script src="script.js" defer></script>
+
+  <div id="loadingState" class="loading-state hidden">
+    <div class="loading-content">
+      <img src="bufferWheel.png" alt="Loading..." class="loading-spinner">
+      <div class="loading-instruction">scroll or use arrow keys to roam around</div>
+    </div>
   </div>
 
-  <div id="feed"></div>
-  <script src="script.js" defer></script>
 </body>
 
 </html>
