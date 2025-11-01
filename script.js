@@ -80,7 +80,7 @@ function showErrorState() {
 }
 
 function preloadMedia(posts) {
-  const preloadBatch = posts.slice(0, 3);
+  const preloadBatch = posts.slice(0, 2);
   preloadBatch.forEach((post, index) => {
     setTimeout(() => {
       if (post.src.endsWith('.mp4')) {
@@ -132,12 +132,20 @@ function renderPosts(posts) {
       const videoEl = postEl.querySelector('video');
       videoEl.muted = true;
       videoEl.playsInline = true;
+      videoEl.loop = true;
+      videoEl.preload = 'metadata'; // lighter than 'auto'
 
-      videoEl.addEventListener('loadeddata', () => {
-        if (index === 0) {
-          videoEl.play().catch(() => { });
-        }
-      });
+      // ✅ Critical for mobile: set src directly and call load()
+      const source = videoEl.querySelector('source');
+      if (source) {
+        videoEl.src = source.src;
+        videoEl.load();
+      }
+
+      // autoplay the first one
+      if (index === 0) {
+        videoEl.play().catch(() => { });
+      }
     }
   });
 }
